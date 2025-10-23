@@ -1,6 +1,6 @@
 services:
   postiz:
-    image: ghcr.io/gitroomhq/postiz-app:latest
+    image: your-registry/postiz-app:custom-webhook  # ← Change this to your custom image
     container_name: postiz
     restart: always
     environment:
