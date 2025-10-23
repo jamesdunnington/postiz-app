@@ -710,6 +710,7 @@ export class PostsRepository {
         publishDate: true,
         releaseURL: true,
         state: true,
+        error: true,
         integration: {
           select: {
             id: true,
