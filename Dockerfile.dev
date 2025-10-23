@@ -16,6 +16,6 @@ COPY . /app
 COPY var/docker/nginx.conf /etc/nginx/nginx.conf
 
 RUN pnpm install
-RUN NODE_OPTIONS="--max-old-space-size=4096" pnpm run build
+RUN NODE_OPTIONS="--max-old-space-size=4096" pnpm -r --workspace-concurrency=1 --filter ./apps/frontend run build --no-lint && pnpm -r --workspace-concurrency=1 --filter ./apps/backend --filter ./apps/workers --filter ./apps/cron run build
 
 CMD ["sh", "-c", "nginx && pnpm run pm2"]
