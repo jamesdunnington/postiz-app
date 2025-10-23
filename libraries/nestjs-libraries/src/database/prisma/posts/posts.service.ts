@@ -343,6 +343,12 @@ export class PostsService {
           true
         );
 
+        // Trigger webhooks for error state
+        await this._webhookService.digestWebhooks(
+          firstPost.organizationId,
+          dayjs(firstPost.publishDate).format('YYYY-MM-DDTHH:mm:00')
+        );
+
         return;
       }
     } catch (err: any) {
@@ -371,6 +377,12 @@ export class PostsService {
           err
         );
       }
+
+      // Trigger webhooks for error state
+      await this._webhookService.digestWebhooks(
+        firstPost.organizationId,
+        dayjs(firstPost.publishDate).format('YYYY-MM-DDTHH:mm:00')
+      );
 
       return;
     }
